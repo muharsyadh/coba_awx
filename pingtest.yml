@@ -1,6 +1,6 @@
 ---
-
-- hosts: all
-  gather_facts: false
+- name: Check connectivity to remote servers
+  hosts: all #servergroup01
   tasks:
-    - ping:
+    - name: ping
+      ping:
