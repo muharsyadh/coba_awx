@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: "Show Network Interfaces"
-      command: ifconfig
+      command: ip a
       register: details
     - name: 'Get Interfaces details'
       debug:
