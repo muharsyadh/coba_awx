@@ -36,7 +36,7 @@
         delegate_to: localhost
 
       - name: store export to local file
-        ansible.builtin.copy:
+        ansible.builtin.file:
           content: "{{ export.stdout }}"
           dest: "/home/arsyad/output_backup/{{ date.stdout }}_at_{{ time.stdout }}_{{ ansible_host }}.config"
           mode: '0644'
@@ -55,7 +55,7 @@
         delegate_to: localhost
 
       - name: store export to local file
-        ansible.builtin.copy:
+        ansible.builtin.file:
           content: "{{ export.stdout }}"
           dest: "/home/arsyad/output_backup/567_{{inventory_hostname }}.config"
           mode: '0644'
