@@ -38,7 +38,7 @@
       - name: store export to local file
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
-          dest: "/home/mikrotik_save/{{ date.stdout }}_at_{{ time.stdout }}_{{ inventory_hostname }}.config"
+          dest: "/home/mikrotik_save/{{ date.stdout }}_at_{{ time.stdout }}.config"
           mode: '0644'
         when: export is defined
         delegate_to: localhost
