@@ -39,11 +39,10 @@
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
           dest: "/home/arsyad/{{ date.stdout }}_at_{{ time.stdout }}_{{ ansible_host }}.config"
+          owner: arsyad
           mode: '0644'
         when: export is defined
         delegate_to: 192.168.100.237
-      - debug:
-          var: export.stdout
 
     - name: Run backup withot password (when password is not defined)
       when: ansible_ssh_pass is not defined
@@ -60,6 +59,7 @@
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
           dest: "/home/arsyad/567_{{inventory_hostname }}.config"
+          owner: arsyad
           mode: '0644'
         when: export is defined
         delegate_to: 192.168.100.237
