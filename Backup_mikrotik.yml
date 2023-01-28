@@ -39,7 +39,6 @@
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
           dest: "/tmp/{{ date.stdout }}_at_{{ time.stdout }}_{{ ansible_host }}.config"
-          owner: arsyad
           mode: '0644'
         when: export is defined
         delegate_to: localhost
