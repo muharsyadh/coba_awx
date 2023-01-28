@@ -38,11 +38,11 @@
       - name: store export to local file
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
-          dest: "/home/arsyad/{{ date.stdout }}_at_{{ time.stdout }}_{{ ansible_host }}.config"
+          dest: "/tmp/{{ date.stdout }}_at_{{ time.stdout }}_{{ ansible_host }}.config"
           owner: arsyad
           mode: '0644'
         when: export is defined
-        delegate_to: 192.168.100.237
+        delegate_to: localhost
 
     - name: Run backup withot password (when password is not defined)
       when: ansible_ssh_pass is not defined
@@ -58,8 +58,7 @@
       - name: store export to local file
         ansible.builtin.copy:
           content: "{{ export.stdout }}"
-          dest: "/home/arsyad/567_{{inventory_hostname }}.config"
-          owner: arsyad
+          dest: "/tmp/567_{{inventory_hostname }}.config"
           mode: '0644'
         when: export is defined
-        delegate_to: 192.168.100.237
+        delegate_to: localhost
