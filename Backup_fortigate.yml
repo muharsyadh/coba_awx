@@ -1,0 +1,21 @@
+---
+- hosts: all
+  collections:
+   - fortinet.fortios
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: no
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
+
+- name: Backup config Fortigate
+  gather_facts: false
+  tasks:
+    - name: Backup config
+      fortios_system_backup:
+        host: "{{ inventory_hostname }}"
+        username: "{{ fortigate_username }}"
+        password: "{{ fortigate_password }}"
+        backup: true
+        backup_path: {{ inventory_hostname }}-config.tar
