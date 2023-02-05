@@ -9,10 +9,16 @@
    ansible_httpapi_validate_certs: no
    ansible_httpapi_port: 443
   tasks:
-    - name: Backup config
-      fortios_system_backup:
-      host: "{{ inventory_hostname }}"
-      username: "{{ fortigate_username }}"
-      password: "{{ fortigate_password }}"
-      backup: true
-      backup_path: /{{ inventory_hostname }}_config.tar
+  - name: Backup a virtual domain.
+    fortios_monitor:
+     access_token: "{{ access_token }}"
+     selector: 'backup.system.config'
+     vdom: 'root'
+     params:
+         scope: 'global'
+    register: backupinfo
+
+  - name: Save the backup information.
+    copy:
+     content: '{{ backupinfo.meta.raw }}'
+     dest: './local.backup'
