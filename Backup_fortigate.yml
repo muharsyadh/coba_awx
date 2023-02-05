@@ -1,7 +1,7 @@
 ---
 - hosts: all
   collections:
-   - fortinet.fortios.fortios
+   - fortinet.fortios
   connection: httpapi
   vars:
    vdom: "root"
@@ -19,5 +19,5 @@
      backup: "yes"
      https: True
      ssl_verify: False
-     scope: "global" or "vdom"
+     scope: "global" 
      filename: "/tmp/backup_test"
