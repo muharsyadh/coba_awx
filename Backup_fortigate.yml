@@ -10,8 +10,7 @@
    ansible_httpapi_port: 443
 
 - name: Backup config Fortigate
-   gather_facts: false
-   tasks:
+  tasks:
     - name: Backup config
       fortios_system_backup:
         host: "{{ inventory_hostname }}"
