@@ -1,9 +1,17 @@
 ---
 - hosts: all
-  gather_facts: no
+  collections:
+   - fortinet.fortios
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
   tasks:
-    - name: Backup only address objects
-      fortios_config:
-      backup: yes
-      backup_path: /tmp/forti_backup/
-      filter: "firewall address"
+  - name: Configure global attributes.
+    fortios_system_global:
+      vdom:  "{{ vdom }}"
+      system_global:
+        admintimeout: "23"
+        hostname: "FortiGate02"
