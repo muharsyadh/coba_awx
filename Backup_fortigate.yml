@@ -8,13 +8,11 @@
    ansible_httpapi_use_ssl: no
    ansible_httpapi_validate_certs: no
    ansible_httpapi_port: 443
-
-- name: Backup config Fortigate
   tasks:
     - name: Backup config
       fortios_system_backup:
-        host: "{{ inventory_hostname }}"
-        username: "{{ fortigate_username }}"
-        password: "{{ fortigate_password }}"
-        backup: true
-        backup_path: /{{ inventory_hostname }}_config.tar
+      host: "{{ inventory_hostname }}"
+      username: "{{ fortigate_username }}"
+      password: "{{ fortigate_password }}"
+      backup: true
+      backup_path: /{{ inventory_hostname }}_config.tar
