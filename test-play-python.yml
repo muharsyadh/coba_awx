@@ -1,0 +1,9 @@
+- name: Run a Python command
+  hosts: localhost
+  tasks:
+    - name: Execute Python command
+      shell: python -c "print('Hello, Ansible!')"
+      register: result
+    - name: Display result
+      debug:
+        var: result
