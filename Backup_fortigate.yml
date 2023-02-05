@@ -9,16 +9,15 @@
    ansible_httpapi_validate_certs: no
    ansible_httpapi_port: 443
   tasks:
-  - name: Backup a virtual domain.
-    fortios_monitor:
-     access_token: "{{ access_token }}"
-     selector: 'backup.system.config'
-     vdom: 'root'
-     params:
-         scope: 'global'
-    register: backupinfo
-
-  - name: Save the backup information.
-    copy:
-     content: '{{ backupinfo.meta.raw }}'
-     dest: './local.backup'
+  - name: backup global or a_specific_vdom settings
+    fortios_system_config_backup_restore:
+     config: "system config backup"
+     host:  "{{ host }}"
+     username: "{{ username }}"
+     password: "{{ password }}"
+     vdom: "{{ vdom }}"
+     backup: "yes"
+     https: True
+     ssl_verify: False
+     scope: "global" or "vdom"
+     filename: "/tmp/backup_test"
