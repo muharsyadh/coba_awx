@@ -18,4 +18,4 @@
         username: "{{ fortigate_username }}"
         password: "{{ fortigate_password }}"
         backup: true
-        backup_path: /{{ inventory_hostname }}-config.tar
+        backup_path: /{{ inventory_hostname }}_config.tar
